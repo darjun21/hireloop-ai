@@ -1,0 +1,1348 @@
+{
+  "is_demo_data": true,
+  "description": "Synthetic demo historical application data for HireLoop AI. Clearly marked is_demo_data=true on every record -- never mixed into real candidate analytics without the explicit DEMO_MODE boundary. See docs/LEARNING_LOOP.md.",
+  "candidate_id": "demo-candidate-1",
+  "applications": [
+    {
+      "application": {
+        "application_id": "demo-app-001",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-001",
+        "selected_resume_version_id": "rv_2",
+        "opportunity_score": 91.2,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-02T00:00:00Z",
+        "applied_at": "2026-05-02T01:00:00Z",
+        "current_status": "OFFER",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for AI Engineer.",
+        "role_family": "AI Engineer",
+        "work_mode": "HYBRID",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-001-ev-1",
+          "application_id": "demo-app-001",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-001",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-02T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-001-ev-2",
+          "application_id": "demo-app-001",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-001",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-05T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-001-ev-3",
+          "application_id": "demo-app-001",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-001",
+          "event_type": "RECRUITER_RESPONSE",
+          "occurred_at": "2026-05-08T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-001-ev-4",
+          "application_id": "demo-app-001",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-001",
+          "event_type": "INTERVIEW",
+          "occurred_at": "2026-05-11T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-001-ev-5",
+          "application_id": "demo-app-001",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-001",
+          "event_type": "FINAL_ROUND",
+          "occurred_at": "2026-05-14T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-001-ev-6",
+          "application_id": "demo-app-001",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-001",
+          "event_type": "OFFER",
+          "occurred_at": "2026-05-17T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-002",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-002",
+        "selected_resume_version_id": "rv_3",
+        "opportunity_score": 86.4,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-03T00:00:00Z",
+        "applied_at": "2026-05-03T01:00:00Z",
+        "current_status": "INTERVIEW",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for AI Engineer.",
+        "role_family": "AI Engineer",
+        "work_mode": "ONSITE",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-002-ev-1",
+          "application_id": "demo-app-002",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-002",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-03T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-002-ev-2",
+          "application_id": "demo-app-002",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-002",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-06T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-002-ev-3",
+          "application_id": "demo-app-002",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-002",
+          "event_type": "RECRUITER_RESPONSE",
+          "occurred_at": "2026-05-09T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-002-ev-4",
+          "application_id": "demo-app-002",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-002",
+          "event_type": "INTERVIEW",
+          "occurred_at": "2026-05-12T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-003",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-003",
+        "selected_resume_version_id": "rv_1",
+        "opportunity_score": 79.8,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-04T00:00:00Z",
+        "applied_at": "2026-05-04T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for AI Engineer.",
+        "role_family": "AI Engineer",
+        "work_mode": "REMOTE",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-003-ev-1",
+          "application_id": "demo-app-003",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-003",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-04T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-003-ev-2",
+          "application_id": "demo-app-003",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-003",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-07T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-003-ev-3",
+          "application_id": "demo-app-003",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-003",
+          "event_type": "RECRUITER_RESPONSE",
+          "occurred_at": "2026-05-10T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-003-ev-4",
+          "application_id": "demo-app-003",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-003",
+          "event_type": "INTERVIEW",
+          "occurred_at": "2026-05-13T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-003-ev-5",
+          "application_id": "demo-app-003",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-003",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-16T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-004",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-004",
+        "selected_resume_version_id": "rv_2",
+        "opportunity_score": 74.1,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-05T00:00:00Z",
+        "applied_at": "2026-05-05T01:00:00Z",
+        "current_status": "RECRUITER_RESPONSE",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for AI Engineer.",
+        "role_family": "AI Engineer",
+        "work_mode": "HYBRID",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-004-ev-1",
+          "application_id": "demo-app-004",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-004",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-05T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-004-ev-2",
+          "application_id": "demo-app-004",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-004",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-08T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-004-ev-3",
+          "application_id": "demo-app-004",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-004",
+          "event_type": "RECRUITER_RESPONSE",
+          "occurred_at": "2026-05-11T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-005",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-005",
+        "selected_resume_version_id": "rv_3",
+        "opportunity_score": 68.5,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-06T00:00:00Z",
+        "applied_at": "2026-05-06T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for AI Engineer.",
+        "role_family": "AI Engineer",
+        "work_mode": "ONSITE",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-005-ev-1",
+          "application_id": "demo-app-005",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-005",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-06T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-005-ev-2",
+          "application_id": "demo-app-005",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-005",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-09T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-005-ev-3",
+          "application_id": "demo-app-005",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-005",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-12T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-006",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-006",
+        "selected_resume_version_id": "rv_1",
+        "opportunity_score": 71.9,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-07T00:00:00Z",
+        "applied_at": "2026-05-07T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for AI Engineer.",
+        "role_family": "AI Engineer",
+        "work_mode": "REMOTE",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-006-ev-1",
+          "application_id": "demo-app-006",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-006",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-07T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-006-ev-2",
+          "application_id": "demo-app-006",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-006",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-10T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-006-ev-3",
+          "application_id": "demo-app-006",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-006",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-13T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-007",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-007",
+        "selected_resume_version_id": "rv_2",
+        "opportunity_score": 65.3,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-08T00:00:00Z",
+        "applied_at": "2026-05-08T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for AI Engineer.",
+        "role_family": "AI Engineer",
+        "work_mode": "HYBRID",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-007-ev-1",
+          "application_id": "demo-app-007",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-007",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-08T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-007-ev-2",
+          "application_id": "demo-app-007",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-007",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-11T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-007-ev-3",
+          "application_id": "demo-app-007",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-007",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-14T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-008",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-008",
+        "selected_resume_version_id": "rv_3",
+        "opportunity_score": 70.0,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-09T00:00:00Z",
+        "applied_at": "2026-05-09T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for AI Engineer.",
+        "role_family": "AI Engineer",
+        "work_mode": "ONSITE",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-008-ev-1",
+          "application_id": "demo-app-008",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-008",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-09T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-008-ev-2",
+          "application_id": "demo-app-008",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-008",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-12T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-008-ev-3",
+          "application_id": "demo-app-008",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-008",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-15T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-009",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-009",
+        "selected_resume_version_id": "rv_1",
+        "opportunity_score": 88.0,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-10T00:00:00Z",
+        "applied_at": "2026-05-10T01:00:00Z",
+        "current_status": "OFFER",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for ML Engineer.",
+        "role_family": "ML Engineer",
+        "work_mode": "REMOTE",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-009-ev-1",
+          "application_id": "demo-app-009",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-009",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-10T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-009-ev-2",
+          "application_id": "demo-app-009",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-009",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-13T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-009-ev-3",
+          "application_id": "demo-app-009",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-009",
+          "event_type": "RECRUITER_RESPONSE",
+          "occurred_at": "2026-05-16T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-009-ev-4",
+          "application_id": "demo-app-009",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-009",
+          "event_type": "INTERVIEW",
+          "occurred_at": "2026-05-19T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-009-ev-5",
+          "application_id": "demo-app-009",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-009",
+          "event_type": "FINAL_ROUND",
+          "occurred_at": "2026-05-22T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-009-ev-6",
+          "application_id": "demo-app-009",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-009",
+          "event_type": "OFFER",
+          "occurred_at": "2026-05-25T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-010",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-010",
+        "selected_resume_version_id": "rv_2",
+        "opportunity_score": 82.3,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-11T00:00:00Z",
+        "applied_at": "2026-05-11T01:00:00Z",
+        "current_status": "INTERVIEW",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for ML Engineer.",
+        "role_family": "ML Engineer",
+        "work_mode": "HYBRID",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-010-ev-1",
+          "application_id": "demo-app-010",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-010",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-11T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-010-ev-2",
+          "application_id": "demo-app-010",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-010",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-14T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-010-ev-3",
+          "application_id": "demo-app-010",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-010",
+          "event_type": "RECRUITER_RESPONSE",
+          "occurred_at": "2026-05-17T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-010-ev-4",
+          "application_id": "demo-app-010",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-010",
+          "event_type": "INTERVIEW",
+          "occurred_at": "2026-05-20T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-011",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-011",
+        "selected_resume_version_id": "rv_3",
+        "opportunity_score": 77.6,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-12T00:00:00Z",
+        "applied_at": "2026-05-12T01:00:00Z",
+        "current_status": "RECRUITER_RESPONSE",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for ML Engineer.",
+        "role_family": "ML Engineer",
+        "work_mode": "ONSITE",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-011-ev-1",
+          "application_id": "demo-app-011",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-011",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-12T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-011-ev-2",
+          "application_id": "demo-app-011",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-011",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-15T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-011-ev-3",
+          "application_id": "demo-app-011",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-011",
+          "event_type": "RECRUITER_RESPONSE",
+          "occurred_at": "2026-05-18T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-012",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-012",
+        "selected_resume_version_id": "rv_1",
+        "opportunity_score": 66.2,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-13T00:00:00Z",
+        "applied_at": "2026-05-13T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for ML Engineer.",
+        "role_family": "ML Engineer",
+        "work_mode": "REMOTE",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-012-ev-1",
+          "application_id": "demo-app-012",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-012",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-13T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-012-ev-2",
+          "application_id": "demo-app-012",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-012",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-16T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-012-ev-3",
+          "application_id": "demo-app-012",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-012",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-19T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-013",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-013",
+        "selected_resume_version_id": "rv_2",
+        "opportunity_score": 69.4,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-14T00:00:00Z",
+        "applied_at": "2026-05-14T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for ML Engineer.",
+        "role_family": "ML Engineer",
+        "work_mode": "HYBRID",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-013-ev-1",
+          "application_id": "demo-app-013",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-013",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-14T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-013-ev-2",
+          "application_id": "demo-app-013",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-013",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-17T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-013-ev-3",
+          "application_id": "demo-app-013",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-013",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-20T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-014",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-014",
+        "selected_resume_version_id": "rv_3",
+        "opportunity_score": 75.0,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-15T00:00:00Z",
+        "applied_at": "2026-05-15T01:00:00Z",
+        "current_status": "INTERVIEW",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for Software Engineer.",
+        "role_family": "Software Engineer",
+        "work_mode": "ONSITE",
+        "skill_cluster": "backend",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-014-ev-1",
+          "application_id": "demo-app-014",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-014",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-15T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-014-ev-2",
+          "application_id": "demo-app-014",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-014",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-18T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-014-ev-3",
+          "application_id": "demo-app-014",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-014",
+          "event_type": "RECRUITER_RESPONSE",
+          "occurred_at": "2026-05-21T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-014-ev-4",
+          "application_id": "demo-app-014",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-014",
+          "event_type": "INTERVIEW",
+          "occurred_at": "2026-05-24T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-015",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-015",
+        "selected_resume_version_id": "rv_1",
+        "opportunity_score": 60.1,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-16T00:00:00Z",
+        "applied_at": "2026-05-16T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for Software Engineer.",
+        "role_family": "Software Engineer",
+        "work_mode": "REMOTE",
+        "skill_cluster": "backend",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-015-ev-1",
+          "application_id": "demo-app-015",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-015",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-16T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-015-ev-2",
+          "application_id": "demo-app-015",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-015",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-19T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-015-ev-3",
+          "application_id": "demo-app-015",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-015",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-22T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-016",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-016",
+        "selected_resume_version_id": "rv_2",
+        "opportunity_score": 58.7,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-17T00:00:00Z",
+        "applied_at": "2026-05-17T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for Software Engineer.",
+        "role_family": "Software Engineer",
+        "work_mode": "HYBRID",
+        "skill_cluster": "backend",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-016-ev-1",
+          "application_id": "demo-app-016",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-016",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-17T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-016-ev-2",
+          "application_id": "demo-app-016",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-016",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-20T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-016-ev-3",
+          "application_id": "demo-app-016",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-016",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-23T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-017",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-017",
+        "selected_resume_version_id": "rv_3",
+        "opportunity_score": 62.4,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-18T00:00:00Z",
+        "applied_at": "2026-05-18T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for Software Engineer.",
+        "role_family": "Software Engineer",
+        "work_mode": "ONSITE",
+        "skill_cluster": "backend",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-017-ev-1",
+          "application_id": "demo-app-017",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-017",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-18T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-017-ev-2",
+          "application_id": "demo-app-017",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-017",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-21T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-017-ev-3",
+          "application_id": "demo-app-017",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-017",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-24T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-018",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-018",
+        "selected_resume_version_id": "rv_1",
+        "opportunity_score": 59.9,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-19T00:00:00Z",
+        "applied_at": "2026-05-19T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for Software Engineer.",
+        "role_family": "Software Engineer",
+        "work_mode": "REMOTE",
+        "skill_cluster": "backend",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-018-ev-1",
+          "application_id": "demo-app-018",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-018",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-19T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-018-ev-2",
+          "application_id": "demo-app-018",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-018",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-22T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-018-ev-3",
+          "application_id": "demo-app-018",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-018",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-25T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-019",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-019",
+        "selected_resume_version_id": "rv_2",
+        "opportunity_score": 61.0,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-20T00:00:00Z",
+        "applied_at": "2026-05-20T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for Software Engineer.",
+        "role_family": "Software Engineer",
+        "work_mode": "HYBRID",
+        "skill_cluster": "backend",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-019-ev-1",
+          "application_id": "demo-app-019",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-019",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-20T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-019-ev-2",
+          "application_id": "demo-app-019",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-019",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-23T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-019-ev-3",
+          "application_id": "demo-app-019",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-019",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-26T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-020",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-020",
+        "selected_resume_version_id": "rv_3",
+        "opportunity_score": 57.3,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-21T00:00:00Z",
+        "applied_at": "2026-05-21T01:00:00Z",
+        "current_status": "REJECTED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for Software Engineer.",
+        "role_family": "Software Engineer",
+        "work_mode": "ONSITE",
+        "skill_cluster": "backend",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-020-ev-1",
+          "application_id": "demo-app-020",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-020",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-21T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-020-ev-2",
+          "application_id": "demo-app-020",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-020",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-24T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-020-ev-3",
+          "application_id": "demo-app-020",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-020",
+          "event_type": "REJECTED",
+          "occurred_at": "2026-05-27T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-021",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-021",
+        "selected_resume_version_id": "rv_1",
+        "opportunity_score": 80.2,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-22T00:00:00Z",
+        "applied_at": "2026-05-22T01:00:00Z",
+        "current_status": "APPLIED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for Applied AI Engineer.",
+        "role_family": "Applied AI Engineer",
+        "work_mode": "REMOTE",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-021-ev-1",
+          "application_id": "demo-app-021",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-021",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-22T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-021-ev-2",
+          "application_id": "demo-app-021",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-021",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-25T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-022",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-022",
+        "selected_resume_version_id": "rv_2",
+        "opportunity_score": 76.5,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-23T00:00:00Z",
+        "applied_at": null,
+        "current_status": "SAVED",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for Applied AI Engineer.",
+        "role_family": "Applied AI Engineer",
+        "work_mode": "HYBRID",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-022-ev-1",
+          "application_id": "demo-app-022",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-022",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-23T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-022-ev-2",
+          "application_id": "demo-app-022",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-022",
+          "event_type": "SAVED",
+          "occurred_at": "2026-05-26T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    },
+    {
+      "application": {
+        "application_id": "demo-app-023",
+        "candidate_id": "demo-candidate-1",
+        "job_id": "demo-job-023",
+        "selected_resume_version_id": "rv_3",
+        "opportunity_score": 72.0,
+        "opportunity_score_version": "v1.0",
+        "created_at": "2026-05-24T00:00:00Z",
+        "applied_at": "2026-05-24T01:00:00Z",
+        "current_status": "WITHDRAWN",
+        "source": "hireloop-demo",
+        "notes": "Synthetic demo history entry for Applied AI Engineer.",
+        "role_family": "Applied AI Engineer",
+        "work_mode": "ONSITE",
+        "skill_cluster": "python-ml",
+        "is_demo_data": true
+      },
+      "events": [
+        {
+          "event_id": "demo-app-023-ev-1",
+          "application_id": "demo-app-023",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-023",
+          "event_type": "APPLICATION_CREATED",
+          "occurred_at": "2026-05-24T00:00:00Z",
+          "source": "system",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-023-ev-2",
+          "application_id": "demo-app-023",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-023",
+          "event_type": "APPLIED",
+          "occurred_at": "2026-05-27T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        },
+        {
+          "event_id": "demo-app-023-ev-3",
+          "application_id": "demo-app-023",
+          "candidate_id": "demo-candidate-1",
+          "job_id": "demo-job-023",
+          "event_type": "WITHDRAWN",
+          "occurred_at": "2026-05-30T00:00:00Z",
+          "source": "human",
+          "notes": null,
+          "metadata": {}
+        }
+      ]
+    }
+  ]
+}

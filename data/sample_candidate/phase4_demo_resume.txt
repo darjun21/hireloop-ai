@@ -1,0 +1,16 @@
+Arjun Example
+AI engineer building retrieval-augmented generation systems for production use.
+
+SKILLS
+Python, Machine Learning, LangChain, RAG
+
+WORK EXPERIENCE
+AI Engineer | Nova Labs | 2021-01 - Present
+Built RAG pipelines and machine learning systems using Python, Machine Learning, and LangChain.
+
+PROJECTS
+Retrieval Augmented Search
+Built a RAG pipeline using LangChain and Python for internal search.
+
+EDUCATION
+B.S. Computer Science | State University | 2014-09 - 2018-05

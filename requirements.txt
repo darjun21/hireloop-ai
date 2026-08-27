@@ -1,0 +1,11 @@
+langchain
+langgraph
+streamlit
+mem0ai
+pinecone-client
+python-dotenv
+pydantic
+httpx
+pypdf
+python-docx
+langgraph-checkpoint-sqlite

@@ -1,0 +1,1011 @@
+{
+  "overall": {
+    "total_cases": 94,
+    "total_passed": 94,
+    "accuracy": 100.0,
+    "categories_run": 12,
+    "categories_total": 12,
+    "categories_crashed": {},
+    "safety_gate_passed": true,
+    "duration_seconds": 1.73
+  },
+  "categories": [
+    {
+      "category": "resume_extraction",
+      "total": 7,
+      "passed": 7,
+      "accuracy": 100.0,
+      "counters": {},
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "extraction:well_structured_engineer",
+          "category": "resume_extraction",
+          "passed": true,
+          "detail": "skills_found=['aws', 'docker', 'kafka', 'postgresql', 'python'] missing=[] unexpected=[] work_experience=2 (min 2) certifications=1 (min 1)",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "extraction:langchain_skills",
+          "category": "resume_extraction",
+          "passed": true,
+          "detail": "skills_found=['aws', 'langchain', 'python'] missing=[] unexpected=[] work_experience=1 (min 1) certifications=0 (min 0)",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "extraction:no_kubernetes",
+          "category": "resume_extraction",
+          "passed": true,
+          "detail": "skills_found=['python', 'tensorflow'] missing=[] unexpected=[] work_experience=1 (min 1) certifications=0 (min 0)",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "extraction:skill_only_in_project",
+          "category": "resume_extraction",
+          "passed": true,
+          "detail": "skills_found=['kafka', 'postgresql', 'python'] missing=[] unexpected=[] work_experience=1 (min 1) certifications=0 (min 0)",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "extraction:aws_skills_only",
+          "category": "resume_extraction",
+          "passed": true,
+          "detail": "skills_found=['aws', 'python'] missing=[] unexpected=[] work_experience=1 (min 1) certifications=0 (min 0)",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "extraction:skill_aliases",
+          "category": "resume_extraction",
+          "passed": true,
+          "detail": "skills_found=['javascript', 'kubernetes', 'postgresql'] missing=[] unexpected=[] work_experience=1 (min 1) certifications=0 (min 0)",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "extraction:every_skill_has_grounded_evidence",
+          "category": "resume_extraction",
+          "passed": true,
+          "detail": "every extracted skill must carry at least one Evidence record with non-empty source_text",
+          "severity": "normal",
+          "extra": {}
+        }
+      ]
+    },
+    {
+      "category": "deduplication",
+      "total": 6,
+      "passed": 6,
+      "accuracy": 100.0,
+      "counters": {},
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "dedup:exact_url_duplicate_removed",
+          "category": "deduplication",
+          "passed": true,
+          "detail": "{'input_count': 2, 'kept_count': 1, 'removed_count': 1, 'removed': [{'job_id': 'j2', 'matched_job_id': 'j1', 'confidence': 0.98, 'reasons': ['identical canonicalized URL']}]}",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "dedup:same_company_title_location_removed",
+          "category": "deduplication",
+          "passed": true,
+          "detail": "{'input_count': 2, 'kept_count': 1, 'removed_count': 1, 'removed': [{'job_id': 'j4', 'matched_job_id': 'j3', 'confidence': 0.9, 'reasons': ['same company, title, and location; different or missing URL']}]}",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "dedup:same_title_different_company_kept",
+          "category": "deduplication",
+          "passed": true,
+          "detail": "{'input_count': 2, 'kept_count': 2, 'removed_count': 0, 'removed': []}",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "dedup:same_company_different_role_kept",
+          "category": "deduplication",
+          "passed": true,
+          "detail": "{'input_count': 2, 'kept_count': 2, 'removed_count': 0, 'removed': []}",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "dedup:near_identical_description_below_threshold_not_auto_removed",
+          "category": "deduplication",
+          "passed": true,
+          "detail": "confidence=0.65 reasons=['same company; different title but near-identical description']",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "dedup:batch_accounting_consistent",
+          "category": "deduplication",
+          "passed": true,
+          "detail": "{'input_count': 6, 'kept_count': 1, 'removed_count': 5, 'removed': [{'job_id': 'batch-1', 'matched_job_id': 'batch-0', 'confidence': 0.9, 'reasons': ['same company, title, and location; different or missing URL']}, {'job_id': 'batch-2', 'matched_job_id': 'batch-0', 'confidence': 0.9, 'reasons': ['same company, title, and location; different or missing URL']}, {'job_id': 'batch-3', 'matched_job_id': 'batch-0', 'confidence': 0.98, 'reasons': ['identical canonicalized URL']}, {'job_id': 'batch-4', 'matched_job_id': 'batch-0', 'confidence': 0.9, 'reasons': ['same company, title, and location; different or missing URL']}, {'job_id': 'batch-5', 'matched_job_id': 'batch-0', 'confidence': 0.9, 'reasons': ['same company, title, and location; different or missing URL']}]}",
+          "severity": "normal",
+          "extra": {}
+        }
+      ]
+    },
+    {
+      "category": "job_quality",
+      "total": 7,
+      "passed": 7,
+      "accuracy": 100.0,
+      "counters": {},
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "job_quality:rich_listing_not_penalized",
+          "category": "job_quality",
+          "passed": true,
+          "detail": "quality_score=100.0 flags=[] confidence=<ConfidenceLevel.HIGH: 'HIGH'> recommendation=<JobQualityRecommendation.VALID: 'VALID'> requirement_completeness='HIGH'",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "job_quality:sparse_listing_flagged",
+          "category": "job_quality",
+          "passed": true,
+          "detail": "quality_score=50.0 flags=['missing_description', 'missing_key_details', 'sparse_requirements'] confidence=<ConfidenceLevel.LOW: 'LOW'> recommendation=<JobQualityRecommendation.LOW_QUALITY: 'LOW_QUALITY'> requirement_completeness='LOW'",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "job_quality:missing_critical_fields_low_quality",
+          "category": "job_quality",
+          "passed": true,
+          "detail": "quality_score=30.0 flags=['missing_company', 'missing_description'] confidence=<ConfidenceLevel.LOW: 'LOW'> recommendation=<JobQualityRecommendation.LOW_QUALITY: 'LOW_QUALITY'> requirement_completeness='MEDIUM'",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "job_quality:vague_title_flagged",
+          "category": "job_quality",
+          "passed": true,
+          "detail": "quality_score=80.0 flags=['vague_title'] confidence=<ConfidenceLevel.MEDIUM: 'MEDIUM'> recommendation=<JobQualityRecommendation.NEEDS_REVIEW: 'NEEDS_REVIEW'> requirement_completeness='HIGH'",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "job_quality:location_work_mode_conflict_flagged",
+          "category": "job_quality",
+          "passed": true,
+          "detail": "quality_score=90.0 flags=['location_work_mode_conflict'] confidence=<ConfidenceLevel.MEDIUM: 'MEDIUM'> recommendation=<JobQualityRecommendation.NEEDS_REVIEW: 'NEEDS_REVIEW'> requirement_completeness='HIGH'",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "job_quality:missing_salary_never_penalized",
+          "category": "job_quality",
+          "passed": true,
+          "detail": "no_salary_score=100.0 with_salary_score=100.0",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "job_quality:boilerplate_heavy_flagged",
+          "category": "job_quality",
+          "passed": true,
+          "detail": "quality_score=85.0 flags=['boilerplate_heavy'] confidence=<ConfidenceLevel.MEDIUM: 'MEDIUM'> recommendation=<JobQualityRecommendation.NEEDS_REVIEW: 'NEEDS_REVIEW'> requirement_completeness='HIGH'",
+          "severity": "normal",
+          "extra": {}
+        }
+      ]
+    },
+    {
+      "category": "opportunity_ranking",
+      "total": 5,
+      "passed": 5,
+      "accuracy": 100.0,
+      "counters": {},
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "ranking:relevant_role_outscores_unrelated",
+          "category": "opportunity_ranking",
+          "passed": true,
+          "detail": "relevant=95.00 unrelated=53.00",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "ranking:location_work_mode_mismatch_reduces_score",
+          "category": "opportunity_ranking",
+          "passed": true,
+          "detail": "match=95.00 mismatch=87.00",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "ranking:historical_signal_influences_but_bounded",
+          "category": "opportunity_ranking",
+          "passed": true,
+          "detail": "diff=10.0000 max_allowed=10.0000",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "ranking:sparse_jd_never_high_confidence",
+          "category": "opportunity_ranking",
+          "passed": true,
+          "detail": "confidence=LOW components_missing=['skill_match', 'experience_match', 'location_work_mode', 'candidate_preference', 'historical_signal', 'job_quality']",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "ranking:rich_well_specified_jd_reaches_high_confidence",
+          "category": "opportunity_ranking",
+          "passed": true,
+          "detail": "confidence=HIGH",
+          "severity": "normal",
+          "extra": {}
+        }
+      ]
+    },
+    {
+      "category": "match_grounding",
+      "total": 5,
+      "passed": 5,
+      "accuracy": 100.0,
+      "counters": {},
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "grounding:real_analysis_output_fully_grounded",
+          "category": "match_grounding",
+          "passed": true,
+          "detail": "strengths=['Candidate has Python experience matching a required skill.'] gaps=['Kubernetes is requested but no evidence exists in the candidate profile.'] risks=[] re_filtered_dropped=[]",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "grounding:missing_required_skill_reported_as_gap_not_strength",
+          "category": "match_grounding",
+          "passed": true,
+          "detail": "gaps=['Kubernetes is requested but no evidence exists in the candidate profile.'] strengths=['Candidate has Python experience matching a required skill.']",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "grounding:analysis_identity_matches_inputs",
+          "category": "match_grounding",
+          "passed": true,
+          "detail": "job_id='grounding-1' candidate_id='cand-1' strengths=['Candidate has Python experience matching a required skill.'] gaps=['Kubernetes is requested but no evidence exists in the candidate profile.'] risks=[] explanation='Opportunity score 77.0 (CONSIDER). Candidate has Python experience matching a required skill. Kubernetes is requested but no evidence exists in the candidate profile.' confidence=<ConfidenceLevel.MEDIUM: 'MEDIUM'>",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "grounding:ungrounded_skill_claim_dropped_grounded_claim_kept",
+          "category": "match_grounding",
+          "passed": true,
+          "detail": "kept=['Candidate has Python experience matching a required skill.'] dropped=['Candidate has Rust experience matching a required skill.']",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "grounding:no_salary_stated_never_inferred",
+          "category": "match_grounding",
+          "passed": true,
+          "detail": "Opportunity score 95.0 (HIGH_PRIORITY). Candidate has Machine Learning experience matching a required skill.",
+          "severity": "normal",
+          "extra": {}
+        }
+      ]
+    },
+    {
+      "category": "truth_guard",
+      "total": 23,
+      "passed": 23,
+      "accuracy": 100.0,
+      "counters": {
+        "false_verified": 0,
+        "false_unsupported": 0
+      },
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [
+        "Case 16 (human_confirmed_evidence_distinct_from_resume_evidence) encodes a judgment call: classify_modification() alone never promotes a HUMAN_CONFIRMATION-only fragment to VERIFIED; only the graph's clarification interrupt path does that. See final report."
+      ],
+      "cases": [
+        {
+          "id": "truth_guard:unsupported_technology",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "candidate has never used Kubernetes anywhere in their profile | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['Kubernetes'] explanation=\"'Kubernetes' does not appear anywhere in the candidate's profile.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:unsupported_certification_style_claim",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "an unearned 'Certified Kubernetes Administrator' style claim | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['Kubernetes'] explanation=\"'Kubernetes' does not appear anywhere in the candidate's profile.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:inflated_title",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "candidate was a Software Engineer, not a Senior AI Engineer | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['senior ai engineer'] explanation=\"Proposed title 'Senior AI Engineer' does not match any evidenced job title.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:matching_title_verified",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "title matches evidenced work experience exactly | expected=VERIFIED actual=VERIFIED unsupported_fragments=[] explanation=\"Title matches evidenced role 'Software Engineer'.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "VERIFIED",
+            "actual_status": "VERIFIED"
+          }
+        },
+        {
+          "id": "truth_guard:inflated_ownership_skills_only",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "'Architected' claims ownership AWS evidence (skills-list only) can't support | expected=NEEDS_HUMAN_CONFIRMATION actual=NEEDS_HUMAN_CONFIRMATION unsupported_fragments=['AWS'] explanation='Semantic review: wording claims more than the source evidence literally states for AWS.'",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "NEEDS_HUMAN_CONFIRMATION",
+            "actual_status": "NEEDS_HUMAN_CONFIRMATION"
+          }
+        },
+        {
+          "id": "truth_guard:unsupported_percentage_metric",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "invented 35% performance improvement with no supporting text anywhere | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['35%'] explanation=\"Numeric claim '35%' has no supporting evidence.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:numeric_metric_supported_by_original_text",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "35% claim is present verbatim in original_text | expected=VERIFIED actual=VERIFIED unsupported_fragments=[] explanation='No technology, numeric, or title claims were found to verify; treated as a safe rewrite.'",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "VERIFIED",
+            "actual_status": "VERIFIED"
+          }
+        },
+        {
+          "id": "truth_guard:unsupported_revenue_claim",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "invented '$500K in cost savings' claim | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['$500K'] explanation=\"Numeric claim '$500K' has no supporting evidence.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:unsupported_team_size_claim",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "invented 'led a team of 15 engineers' -- no such evidence exists | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['15 engineers'] explanation=\"Numeric claim '15 engineers' has no supporting evidence.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:skills_only_never_verified",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "AWS is skills-only evidence; must not reach VERIFIED | expected=NEEDS_HUMAN_CONFIRMATION actual=NEEDS_HUMAN_CONFIRMATION unsupported_fragments=['AWS'] explanation='Semantic review: wording claims more than the source evidence literally states for AWS.' | extra_check: status=TruthGuardStatus.NEEDS_HUMAN_CONFIRMATION",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "NEEDS_HUMAN_CONFIRMATION",
+            "actual_status": "NEEDS_HUMAN_CONFIRMATION"
+          }
+        },
+        {
+          "id": "truth_guard:project_evidence_only_verified",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "RAG/LangChain claim is fully supported by project evidence only | expected=VERIFIED actual=VERIFIED unsupported_fragments=[] explanation=\"'Python' is directly supported by work/project evidence. 'LangChain' is directly supported by work/project evidence. 'RAG' is directly supported by work/project evidence.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "VERIFIED",
+            "actual_status": "VERIFIED"
+          }
+        },
+        {
+          "id": "truth_guard:partial_hedged_wording_inflation",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "'Designed PostgreSQL-backed services' overstates 'Used PostgreSQL for storage' | expected=PARTIALLY_SUPPORTED actual=PARTIALLY_SUPPORTED unsupported_fragments=['PostgreSQL'] explanation='Semantic review: wording claims more than the source evidence literally states for PostgreSQL.'",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "PARTIALLY_SUPPORTED",
+            "actual_status": "PARTIALLY_SUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:mixed_claim_partially_fabricated",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "Docker+LangChain true, Kubernetes+40% fabricated | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['Kubernetes', '40%'] explanation=\"'Kubernetes' does not appear anywhere in the candidate's profile. 'LangChain' is directly supported by work/project evidence. 'RAG' is directly supported by work/project evidence. Numeric claim '40%' has no supporting evidence.\" | extra_check: unsupported_fragments=['Kubernetes', '40%']",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:docker_does_not_prove_kubernetes",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "Docker evidence must not be treated as covering Kubernetes | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['Kubernetes'] explanation=\"'Docker' is directly supported by work/project evidence. 'Kubernetes' does not appear anywhere in the candidate's profile.\" | extra_check: unsupported_fragments=['Kubernetes']",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:skill_entirely_absent",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "Terraform never appears anywhere in the profile | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['Terraform'] explanation=\"'Terraform' does not appear anywhere in the candidate's profile.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:human_confirmed_evidence_distinct_from_resume_evidence",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "a HUMAN_CONFIRMATION evidence record for AWS does not silently upgrade the skills-only fragment to VERIFIED | expected=NEEDS_HUMAN_CONFIRMATION actual=NEEDS_HUMAN_CONFIRMATION unsupported_fragments=['AWS'] explanation='Semantic review: wording claims more than the source evidence literally states for AWS.'",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "NEEDS_HUMAN_CONFIRMATION",
+            "actual_status": "NEEDS_HUMAN_CONFIRMATION"
+          }
+        },
+        {
+          "id": "truth_guard:deterministic_unsupported_survives_adversarial_llm",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "hard UNSUPPORTED (Kubernetes) must not be upgraded by an adversarial LLM claiming VERIFIED | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['Kubernetes'] explanation=\"'Kubernetes' does not appear anywhere in the candidate's profile.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:post_validation_cap_blocks_skills_only_verified",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "adversarial LLM says VERIFIED for AWS skills-only fragment -- must be capped | expected=NEEDS_HUMAN_CONFIRMATION actual=NEEDS_HUMAN_CONFIRMATION unsupported_fragments=['AWS'] explanation='trust me'",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "NEEDS_HUMAN_CONFIRMATION",
+            "actual_status": "NEEDS_HUMAN_CONFIRMATION"
+          }
+        },
+        {
+          "id": "truth_guard:llm_failure_fails_closed",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "Truth Guard's LLM layer is unavailable -- must fail closed, not VERIFIED | expected=NEEDS_HUMAN_CONFIRMATION actual=NEEDS_HUMAN_CONFIRMATION unsupported_fragments=['PostgreSQL'] explanation='Semantic verification unavailable (provider failure); flagged for human confirmation.'",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "NEEDS_HUMAN_CONFIRMATION",
+            "actual_status": "NEEDS_HUMAN_CONFIRMATION"
+          }
+        },
+        {
+          "id": "truth_guard:no_llm_configured_deterministic_fallback",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "no LLM client at all -- deterministic ambiguous-rule fallback | expected=PARTIALLY_SUPPORTED actual=PARTIALLY_SUPPORTED unsupported_fragments=['PostgreSQL'] explanation='Semantic ambiguity resolved by deterministic fallback rules (no LLM configured).'",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "PARTIALLY_SUPPORTED",
+            "actual_status": "PARTIALLY_SUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:tailor_reason_never_used_as_evidence",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "reason field lies confidently about unlisted Kubernetes experience -- must be ignored | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['Kubernetes'] explanation=\"'Kubernetes' does not appear anywhere in the candidate's profile.\"",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:safe_rewrite_uses_original_text",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "safe rewrite should equal the un-inflated original_text | expected=PARTIALLY_SUPPORTED actual=PARTIALLY_SUPPORTED unsupported_fragments=['PostgreSQL'] explanation='Semantic review: wording claims more than the source evidence literally states for PostgreSQL.' | extra_check: suggested_safe_rewrite='Used PostgreSQL for backend storage.'",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "PARTIALLY_SUPPORTED",
+            "actual_status": "PARTIALLY_SUPPORTED"
+          }
+        },
+        {
+          "id": "truth_guard:no_fabricated_safe_rewrite_when_nothing_safe",
+          "category": "truth_guard",
+          "passed": true,
+          "detail": "Kubernetes claim has no original_text and no verified fragments | expected=UNSUPPORTED actual=UNSUPPORTED unsupported_fragments=['Kubernetes'] explanation=\"'Kubernetes' does not appear anywhere in the candidate's profile.\" | extra_check: suggested_safe_rewrite=None",
+          "severity": "normal",
+          "extra": {
+            "expected_status": "UNSUPPORTED",
+            "actual_status": "UNSUPPORTED"
+          }
+        }
+      ]
+    },
+    {
+      "category": "human_approval",
+      "total": 7,
+      "passed": 7,
+      "accuracy": 100.0,
+      "counters": {
+        "enforcement_violations": 0
+      },
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "approval:no_selection_without_explicit_human_select",
+          "category": "human_approval",
+          "passed": true,
+          "detail": "None",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "approval:no_unsupported_modification_in_approved_version",
+          "category": "human_approval",
+          "passed": true,
+          "detail": "approved_version={'resume_version_id': 'resume_v2_cand-eval-approval-2', 'candidate_id': 'cand-eval-approval-2', 'parent_version_id': 'resume_v1_cand-eval-approval-2', 'selected_job_id': 'job_ai_001', 'created_at': '2026-08-27T20:43:15.848086Z', 'approved_modification_ids': ['mod-10b7e292', 'mod-93aa5a54', 'mod-a73c3f67', 'mod-f90f61e3'], 'status': 'APPROVED'}",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "approval:human_edit_reverified_by_truth_guard",
+          "category": "human_approval",
+          "passed": true,
+          "detail": "edited_modification_still_offerable=False",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "approval:cancel_at_selection_stops_safely",
+          "category": "human_approval",
+          "passed": true,
+          "detail": "CANCELLED",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "approval:cancel_at_resume_approval_creates_nothing",
+          "category": "human_approval",
+          "passed": true,
+          "detail": "resume_versions=None application_id=None",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "approval:no_auto_submit_without_human_action",
+          "category": "human_approval",
+          "passed": true,
+          "detail": "RUNNING",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "approval:explicit_human_action_required_to_apply",
+          "category": "human_approval",
+          "passed": true,
+          "detail": "COMPLETED",
+          "severity": "normal",
+          "extra": {}
+        }
+      ]
+    },
+    {
+      "category": "failure_recovery",
+      "total": 6,
+      "passed": 6,
+      "accuracy": 100.0,
+      "counters": {
+        "RECOVERED": 3,
+        "DEGRADED": 0,
+        "SAFE_FAILURE": 3,
+        "UNSAFE_FAILURE": 0
+      },
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "failure_recovery:primary_llm_unavailable_fallback_engages",
+          "category": "failure_recovery",
+          "passed": true,
+          "detail": "outcome=RECOVERED expected_max=RECOVERED :: skills=['Python', 'AWS']",
+          "severity": "normal",
+          "extra": {
+            "outcome": "RECOVERED"
+          }
+        },
+        {
+          "id": "failure_recovery:malformed_llm_output_caught_as_typed_error",
+          "category": "failure_recovery",
+          "passed": true,
+          "detail": "outcome=SAFE_FAILURE expected_max=SAFE_FAILURE :: raised typed HireLoopLLMError(MALFORMED_RESPONSE) as expected",
+          "severity": "normal",
+          "extra": {
+            "outcome": "SAFE_FAILURE"
+          }
+        },
+        {
+          "id": "failure_recovery:corrupt_resume_input_fails_safely",
+          "category": "failure_recovery",
+          "passed": true,
+          "detail": "outcome=SAFE_FAILURE expected_max=SAFE_FAILURE :: error='corrupt or unreadable pdf file: Stream has ended unexpectedly'",
+          "severity": "normal",
+          "extra": {
+            "outcome": "SAFE_FAILURE"
+          }
+        },
+        {
+          "id": "failure_recovery:empty_job_batch_no_crash",
+          "category": "failure_recovery",
+          "passed": true,
+          "detail": "outcome=RECOVERED expected_max=RECOVERED :: graph reached COMPLETED_WITH_NO_RESULTS cleanly",
+          "severity": "normal",
+          "extra": {
+            "outcome": "RECOVERED"
+          }
+        },
+        {
+          "id": "failure_recovery:malformed_job_record_skipped_not_crashed",
+          "category": "failure_recovery",
+          "passed": true,
+          "detail": "outcome=RECOVERED expected_max=RECOVERED :: warnings=['skipped malformed job entry at index 1: 1 validation error(s)']",
+          "severity": "normal",
+          "extra": {
+            "outcome": "RECOVERED"
+          }
+        },
+        {
+          "id": "failure_recovery:truth_guard_llm_unavailable_fails_closed",
+          "category": "failure_recovery",
+          "passed": true,
+          "detail": "outcome=SAFE_FAILURE expected_max=SAFE_FAILURE :: fail-closed status=NEEDS_HUMAN_CONFIRMATION",
+          "severity": "normal",
+          "extra": {
+            "outcome": "SAFE_FAILURE"
+          }
+        }
+      ]
+    },
+    {
+      "category": "outcome_analytics",
+      "total": 7,
+      "passed": 7,
+      "accuracy": 100.0,
+      "counters": {},
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "analytics:multi_stage_progression_counted_once",
+          "category": "outcome_analytics",
+          "passed": true,
+          "detail": "sample_size=1 positive=1 interviews=1 offers=1",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "analytics:interview_then_rejected_both_counted_correctly",
+          "category": "outcome_analytics",
+          "passed": true,
+          "detail": "interviews=1 rejections=1 sample_size=1",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "analytics:withdrawn_excluded_from_group_stats",
+          "category": "outcome_analytics",
+          "passed": true,
+          "detail": "group_sample_size=0 total_resolved=0",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "analytics:pending_application_not_counted_as_resolved",
+          "category": "outcome_analytics",
+          "passed": true,
+          "detail": "total_resolved=0 total_applications=1",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "analytics:role_family_groups_do_not_leak",
+          "category": "outcome_analytics",
+          "passed": true,
+          "detail": "ai_offers=1 ds_offers=0",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "analytics:work_mode_grouping_correct",
+          "category": "outcome_analytics",
+          "passed": true,
+          "detail": "dict_keys(['REMOTE'])",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "analytics:real_seeded_demo_data_computes_consistently",
+          "category": "outcome_analytics",
+          "passed": true,
+          "detail": "total_applications=23 total_resolved=20 records_loaded=23",
+          "severity": "normal",
+          "extra": {}
+        }
+      ]
+    },
+    {
+      "category": "learning_insight_grounding",
+      "total": 8,
+      "passed": 8,
+      "accuracy": 100.0,
+      "counters": {},
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "learning:grounded_insight_accepted",
+          "category": "learning_insight_grounding",
+          "passed": true,
+          "detail": "accepted=[LearningInsight(insight_id='insight-e97365290d', category=<InsightCategory.ROLE_FAMILY: 'ROLE_FAMILY'>, observation='Observed pattern: AI Engineer applications have generated a 40.0% interview rate compared with 10.0% for Data Scientist.', evidence=\"20 resolved application(s) for 'AI Engineer': response_rate=40.0%, interview_rate=40.0%, offer_rate=0.0%.\", sample_size=20, confidence=<SampleConfidence.HIGH: 'HIGH'>, actionability=<ActionabilityLevel.STRONG_SIGNAL: 'STRONG_SIGNAL'>, recommendation='Continue prioritizing AI Engineer opportunities.', created_at=datetime.datetime(2026, 8, 27, 20, 43, 16, 427634, tzinfo=datetime.timezone.utc))] rejections=[]",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "learning:invented_percentage_rejected",
+          "category": "learning_insight_grounding",
+          "passed": true,
+          "detail": "rejections=[\"insight for 'AI Engineer' cited a percentage not present in analytics; rejected\"]",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "learning:causal_language_rejected",
+          "category": "learning_insight_grounding",
+          "passed": true,
+          "detail": "rejections=[\"insight for 'AI Engineer' used causal language ('causes'); rejected\"]",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "learning:unknown_group_reference_rejected",
+          "category": "learning_insight_grounding",
+          "passed": true,
+          "detail": "rejections=[\"insight referenced unknown group 'Quantum Wizard'; rejected\"]",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "learning:sample_size_and_confidence_always_derived_from_analytics",
+          "category": "learning_insight_grounding",
+          "passed": true,
+          "detail": "accepted_sample_size=20",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "learning:insufficient_sample_size_rejected",
+          "category": "learning_insight_grounding",
+          "passed": true,
+          "detail": "rejections=[\"group 'Tiny Group' has insufficient sample size (0); rejected\"]",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "learning:actionability_deterministic_and_effect_size_aware",
+          "category": "learning_insight_grounding",
+          "passed": true,
+          "detail": "strong=STRONG_SIGNAL weak=NO_CLEAR_SIGNAL",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "learning:tiny_sample_cannot_produce_strong_signal",
+          "category": "learning_insight_grounding",
+          "passed": true,
+          "detail": "actionability=WEAK_SIGNAL",
+          "severity": "normal",
+          "extra": {}
+        }
+      ]
+    },
+    {
+      "category": "end_to_end",
+      "total": 7,
+      "passed": 7,
+      "accuracy": 100.0,
+      "counters": {
+        "task_completion": 1,
+        "human_selection_enforced": 1,
+        "unsupported_claim_blocked": 1,
+        "human_resume_approval_enforced": 1,
+        "application_created": 1,
+        "outcome_recorded": 1,
+        "strategy_insight_created": 1
+      },
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "e2e:task_completion",
+          "category": "end_to_end",
+          "passed": true,
+          "detail": "task_completion=True",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "e2e:human_selection_enforced",
+          "category": "end_to_end",
+          "passed": true,
+          "detail": "human_selection_enforced=True",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "e2e:unsupported_claim_blocked",
+          "category": "end_to_end",
+          "passed": true,
+          "detail": "unsupported_claim_blocked=True",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "e2e:human_resume_approval_enforced",
+          "category": "end_to_end",
+          "passed": true,
+          "detail": "human_resume_approval_enforced=True",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "e2e:application_created",
+          "category": "end_to_end",
+          "passed": true,
+          "detail": "application_created=True",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "e2e:outcome_recorded",
+          "category": "end_to_end",
+          "passed": true,
+          "detail": "outcome_recorded=True",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "e2e:strategy_insight_created",
+          "category": "end_to_end",
+          "passed": true,
+          "detail": "strategy_insight_created=True",
+          "severity": "normal",
+          "extra": {}
+        }
+      ]
+    },
+    {
+      "category": "live_discovery",
+      "total": 6,
+      "passed": 6,
+      "accuracy": 100.0,
+      "counters": {},
+      "severe_failure": false,
+      "severe_failure_reason": "",
+      "notes": [],
+      "cases": [
+        {
+          "id": "live_discovery:likely_job_0",
+          "category": "live_discovery",
+          "passed": true,
+          "detail": "LIKELY_JOB",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "live_discovery:likely_job_1",
+          "category": "live_discovery",
+          "passed": true,
+          "detail": "LIKELY_JOB",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "live_discovery:possible_job_0",
+          "category": "live_discovery",
+          "passed": true,
+          "detail": "POSSIBLE_JOB",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "live_discovery:not_job_0",
+          "category": "live_discovery",
+          "passed": true,
+          "detail": "NOT_JOB",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "live_discovery:not_job_1",
+          "category": "live_discovery",
+          "passed": true,
+          "detail": "NOT_JOB",
+          "severity": "normal",
+          "extra": {}
+        },
+        {
+          "id": "live_discovery:outage_produces_safe_degraded_state",
+          "category": "live_discovery",
+          "passed": true,
+          "detail": "crashed=False outcome=LiveDiscoveryOutcome(job_dicts=[], events=['Live job search started using You.com.', '1 role queries executed.', 'You.com search unavailable; live discovery stopped safely.'], failed=True, failure_reason='PROVIDER_UNAVAILABLE')",
+          "severity": "critical",
+          "extra": {}
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+Arjun Example
+AI engineer building retrieval-augmented systems for production use.
+
+SKILLS
+Python, Machine Learning, LangChain, AWS, SQL
+
+WORK EXPERIENCE
+ML Platform Engineer | Nova Labs | 2021-01 - Present
+Built retrieval pipelines and fine-tuning workflows using Python, Machine Learning, and LangChain, deployed on AWS.
+
+Backend Engineer | Beta Corp | 2018-06 - 2021-01
+Developed backend services in Python and SQL.
+
+PROJECTS
+Realtime Recommender
+Used Python and Kafka to build a recommender system for internal tooling.
+
+EDUCATION
+B.S. Computer Science | State University | 2014-09 - 2018-05
