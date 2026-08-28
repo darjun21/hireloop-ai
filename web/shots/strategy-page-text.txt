@@ -1,0 +1,91 @@
+HireLoop AI
+Every application makes
+the next one smarter.
+DEMO MODE / SYNTHETIC DATA
+WORKSPACE
+Mission Control
+Candidate Setup
+Opportunities
+Resume Studio
+Applications
+Strategy Intelligence
+System & Demo
+THE HIRELOOP
+DISC
+SCOR
+TAIL
+VERI
+TRAC
+LEAR
+IMPR
+Human decides. AI works around you. Every outcome improves the next loop.
+HireLoop AI
+Every application makes the next one smarter.
+DEMO MODE — SYNTHETIC DATA
+System Status: Operational
+Strategy Intelligence
+
+What's actually working?
+
+DEMO MODE figures below include synthetic seeded history.
+Interview rate by role family
+ML Engineer
+40.0% (2/5)
+AI Engineer
+37.5% (3/8)
+Software Engineer
+14.3% (1/7)
+Response rate by role family
+ML Engineer
+60.0% (3/5)
+AI Engineer
+50.0% (4/8)
+Software Engineer
+14.3% (1/7)
+View Raw Data
+HIRELOOP STRATEGY INSIGHTS
+LATEST HIRELOOP INSIGHT
+WORK_MODE
+OBSERVED DATA
+
+6 resolved application(s) for 'REMOTE': response_rate=33.3%, interview_rate=33.3%, offer_rate=16.7%.
+
+AI INTERPRETATION
+
+Observed pattern (moderate confidence): REMOTE applications have generated a 33.3% interview rate compared with 28.6% for ONSITE.
+
+Recommendation: No clear strategy change is justified yet. Continue collecting outcome data.
+
+Sample size: 6
+Confidence: MEDIUM
+Actionability: NO_CLEAR_SIGNAL
+LATEST HIRELOOP INSIGHT
+RESUME_VERSION
+OBSERVED DATA
+
+1 resolved application(s) for 'resume_v2_cand-api-3c06eff0ef': response_rate=100.0%, interview_rate=100.0%, offer_rate=0.0%.
+
+AI INTERPRETATION
+
+Based on a very small sample (treat as an early, low-confidence signal): resume_v2_cand-api-3c06eff0ef applications have generated a 100.0% interview rate compared with 28.6% for rv_3.
+
+Recommendation: Continue prioritizing resume_v2_cand-api-3c06eff0ef opportunities while collecting more data.
+
+Sample size: 1
+Confidence: INSUFFICIENT
+Actionability: WEAK_SIGNAL
+LATEST HIRELOOP INSIGHT
+ROLE_FAMILY
+OBSERVED DATA
+
+5 resolved application(s) for 'ML Engineer': response_rate=60.0%, interview_rate=40.0%, offer_rate=20.0%.
+
+AI INTERPRETATION
+
+Based on a limited sample (low confidence): ML Engineer applications have generated a 40.0% interview rate compared with 14.3% for Software Engineer.
+
+Recommendation: Continue prioritizing ML Engineer opportunities while collecting more data.
+
+Sample size: 5
+Confidence: LOW
+Actionability: WEAK_SIGNAL
