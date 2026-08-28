@@ -19,6 +19,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from api import engine, serializers
+from api.validation import InvalidWorkModeError, normalize_work_modes
 
 app = FastAPI(title="HireLoop AI API Bridge")
 
@@ -82,10 +83,14 @@ class RunRequest(BaseModel):
 @app.post("/api/session/{session_id}/run")
 def start_run(session_id: str, body: RunRequest):
     sess = _sess(session_id)
+    try:
+        work_modes = normalize_work_modes(body.work_modes)
+    except InvalidWorkModeError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
     resume_path = body.resume_path or engine.DEMO_RESUME_PATH
-    sess.last_run_params = {"resume_path": resume_path, "roles": body.target_roles, "work_mode": body.work_modes}
+    sess.last_run_params = {"resume_path": resume_path, "roles": body.target_roles, "work_mode": work_modes}
     sess.job_source_override = None
-    engine.start_new_run(sess, resume_path, body.target_roles, body.work_modes)
+    engine.start_new_run(sess, resume_path, body.target_roles, work_modes)
     return serializers.mission_control_view(sess)
 
 
