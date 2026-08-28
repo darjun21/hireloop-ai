@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import Icon from "@/components/Icon";
 import KpiRow from "@/components/KpiRow";
 import HumanLoopDiagram from "@/components/HumanLoopDiagram";
@@ -12,10 +13,33 @@ import RecentActivity from "@/components/RecentActivity";
 import HumanDecisionBanner from "@/components/HumanDecisionBanner";
 import HumanDecisionModal from "@/components/HumanDecisionModal";
 import { useSession } from "@/lib/session-context";
+import { careerProfileApi, getOwnerId } from "@/lib/career-profile-api";
 
 export default function MissionControlPage() {
-  const { mc, loading, error, startDemo, applyResume } = useSession();
+  const { mc, mode, loading, error, startDemo, applyResume } = useSession();
   const [modalDismissed, setModalDismissed] = useState(false);
+
+  // Only used for the PERSONAL-mode empty state's primary CTA (Complete
+  // Career Profile vs. Find Opportunities) -- read-only, never affects the
+  // server-side confirmation gate itself (api/main.py::start_run remains
+  // the actual enforcement point).
+  const [confirmedAt, setConfirmedAt] = useState<string | null | undefined>(undefined);
+
+  useEffect(() => {
+    if (mode !== "PERSONAL" || (mc && mc.has_run)) return;
+    let cancelled = false;
+    careerProfileApi
+      .getOrCreate(getOwnerId())
+      .then((profile) => {
+        if (!cancelled) setConfirmedAt(profile.confirmed_at);
+      })
+      .catch(() => {
+        if (!cancelled) setConfirmedAt(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [mode, mc]);
 
   if (error) {
     return (
@@ -41,25 +65,68 @@ export default function MissionControlPage() {
     <div className="flex flex-col gap-2.5 max-w-[1760px]">
       <div>
         <h1 className="text-[22px] font-extrabold tracking-tight leading-tight">
-          {greetingName ? `Good afternoon, ${greetingName}.` : "Welcome back."}
+          {greetingName
+            ? `Good afternoon, ${greetingName}.`
+            : mode === "CERTIFICATION_DEMO"
+              ? "HireLoop Certification Demo"
+              : "Welcome back."}
         </h1>
         <p className="text-[12px] text-muted mt-0.5">
-          {greetingName ? "Your next opportunity is taking shape." : "Start the certification demo to see HireLoop in action."}
+          {greetingName
+            ? "Your next opportunity is taking shape."
+            : mode === "CERTIFICATION_DEMO"
+              ? "Synthetic data only — this run never touches your real Career Profile."
+              : "Ready for your next loop."}
         </p>
       </div>
 
       {!mc.has_run ? (
-        <div className="hl-card p-8 flex flex-col items-center text-center gap-3 max-w-2xl">
-          <Icon name="bolt" size={26} color="var(--violet)" />
-          <div className="text-lg font-bold">Ready For Your First Loop</div>
-          <p className="text-[13px] text-muted max-w-md">
-            Start the certification demo to see live discovery, scoring, matching, and Truth Guard verification —
-            driven by the real HireLoop backend.
-          </p>
-          <button className="hl-btn-primary mt-2" onClick={() => startDemo()} disabled={loading}>
-            {loading ? "Starting…" : "START CERTIFICATION DEMO"}
-          </button>
-        </div>
+        mode === "CERTIFICATION_DEMO" ? (
+          <div className="hl-card p-8 flex flex-col items-center text-center gap-3 max-w-2xl">
+            <Icon name="bolt" size={26} color="var(--violet)" />
+            <div className="text-lg font-bold">HireLoop Certification Demo</div>
+            <p className="text-[13px] text-muted max-w-md">
+              Synthetic data only. See live discovery, scoring, matching, and Truth Guard verification — driven by
+              the real HireLoop backend, using a seeded synthetic candidate.
+            </p>
+            <button className="hl-btn-primary mt-2" onClick={() => startDemo()} disabled={loading}>
+              {loading ? "Starting…" : "START CERTIFICATION DEMO"}
+            </button>
+          </div>
+        ) : (
+          <div className="hl-card p-8 flex flex-col items-center text-center gap-4 max-w-2xl">
+            <Icon name="bolt" size={26} color="var(--cyan)" />
+            <div>
+              <div className="text-[11px] font-bold uppercase tracking-wider text-muted mb-1">Welcome Back</div>
+              <div className="text-lg font-bold">Ready for Your Next Loop</div>
+            </div>
+            <p className="text-[13px] text-muted max-w-md">
+              Complete your Career Profile and discover opportunities matched to your experience, goals, and
+              preferences.
+            </p>
+            {confirmedAt === undefined ? null : confirmedAt ? (
+              <Link href="/candidate-setup" className="hl-btn-primary mt-1">
+                FIND OPPORTUNITIES
+              </Link>
+            ) : (
+              <Link href="/career-profile" className="hl-btn-primary mt-1">
+                COMPLETE CAREER PROFILE
+              </Link>
+            )}
+
+            <div className="w-full max-w-sm border-t border-[var(--border)] mt-2 pt-4 flex flex-col items-center gap-2">
+              <p className="text-[12px] text-muted">Want to explore the full workflow instantly?</p>
+              <button
+                className="hl-btn-secondary text-[12px]"
+                onClick={() => startDemo()}
+                disabled={loading}
+              >
+                {loading ? "Starting…" : "TRY CERTIFICATION DEMO"}
+              </button>
+              <p className="text-[11px] text-muted">Synthetic data only. Your Personal Career Profile will not be used.</p>
+            </div>
+          </div>
+        )
       ) : (
         <>
           <KpiRow items={mc.kpis} />
