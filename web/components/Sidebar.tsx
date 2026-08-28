@@ -9,7 +9,8 @@ import { useSession } from "@/lib/session-context";
 
 const NAV: { href: string; label: string; icon: IconName }[] = [
   { href: "/", label: "Mission Control", icon: "mission_control" },
-  { href: "/candidate-setup", label: "Candidate Setup", icon: "human" },
+  { href: "/career-profile", label: "My Career Profile", icon: "human" },
+  { href: "/candidate-setup", label: "Run Discovery", icon: "search" },
   { href: "/opportunities", label: "Opportunities", icon: "opportunities" },
   { href: "/resume-studio", label: "Resume Studio", icon: "resume" },
   { href: "/applications", label: "Applications", icon: "applications" },
@@ -19,7 +20,8 @@ const NAV: { href: string; label: string; icon: IconName }[] = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const { mc } = useSession();
+  const { mc, mode } = useSession();
+  const isDemo = mode === "CERTIFICATION_DEMO";
 
   return (
     <aside className="hidden lg:flex w-[272px] shrink-0 flex-col bg-sidebar border-r border-border h-screen sticky top-0">
@@ -36,7 +38,9 @@ export default function Sidebar() {
       </div>
 
       <div className="px-5 pb-4">
-        <span className="hl-badge hl-badge-violet">DEMO MODE / SYNTHETIC DATA</span>
+        <span className={`hl-badge ${isDemo ? "hl-badge-violet" : "hl-badge-success"}`}>
+          {isDemo ? "DEMO MODE / SYNTHETIC DATA" : "PERSONAL MODE"}
+        </span>
       </div>
 
       <div className="px-3 text-[10px] font-bold uppercase tracking-wider text-muted px-5 pb-1">Workspace</div>

@@ -65,6 +65,14 @@ class Session:
     outcome_interrupt: dict | None = None
     last_run_params: dict | None = None
     job_source_override: Any = None
+    # PERSONAL (default) or CERTIFICATION_DEMO. Set to CERTIFICATION_DEMO
+    # only by load_certification_demo() below. Gates whether synthetic
+    # demo history (data/sample_jobs.json-derived applications via
+    # demo_application_loader) is ever mixed into this session's
+    # analytics — see outcome_analytics_for(). A PERSONAL session must
+    # never see synthetic data regardless of the global
+    # settings.demo_mode flag.
+    mode: str = "PERSONAL"
 
 
 _SESSIONS: dict[str, Session] = {}
@@ -154,6 +162,7 @@ def load_certification_demo(sess: Session) -> None:
         "work_mode": DEFAULT_WORK_MODES,
     }
     sess.job_source_override = None
+    sess.mode = "CERTIFICATION_DEMO"
     start_new_run(sess, DEMO_RESUME_PATH, DEFAULT_TARGET_ROLES, DEFAULT_WORK_MODES)
 
 
@@ -249,7 +258,17 @@ def stage_status_map(sess: Session) -> dict[str, str]:
 
 def outcome_analytics_for(sess: Session) -> Any:
     """Direct analogue of the analytics computation used on the Dashboard
-    and Strategy pages of app.py."""
-    demo_records = load_demo_application_history() if sess.settings.demo_mode else []
+    and Strategy pages of app.py.
+
+    Synthetic demo history is only ever mixed in for a CERTIFICATION_DEMO
+    session, never a PERSONAL one -- gating on sess.mode in addition to the
+    global settings.demo_mode flag is required for real/demo isolation:
+    settings.demo_mode is process-wide, so without this per-session check a
+    PERSONAL session running alongside demo_mode=True would otherwise
+    inherit synthetic applications. See
+    tests/test_career_profile_isolation.py."""
+    demo_records = (
+        load_demo_application_history() if sess.settings.demo_mode and sess.mode == "CERTIFICATION_DEMO" else []
+    )
     live_records = sess.tracker.get_applications_with_history(include_demo_data=False)
     return compute_outcome_analytics(demo_records + live_records)

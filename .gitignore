@@ -14,3 +14,7 @@ data/hireloop.db
 .mypy_cache/
 .streamlit/
 *.egg-info/
+
+data/career_profile_resumes/
+web/shots/
+data/career_profile*.db

@@ -15,13 +15,19 @@ ValueError deep inside a LangGraph node.
 
 from __future__ import annotations
 
-from src.models.enums import WorkMode
+from src.models.enums import EmploymentType, WorkMode
 
 
 class InvalidWorkModeError(ValueError):
     def __init__(self, raw_value: object) -> None:
         self.raw_value = raw_value
         super().__init__(f"{raw_value!r} is not a recognized work mode")
+
+
+class InvalidEmploymentTypeError(ValueError):
+    def __init__(self, raw_value: object) -> None:
+        self.raw_value = raw_value
+        super().__init__(f"{raw_value!r} is not a recognized employment type")
 
 
 # Friendly display labels (and common alternate spellings) a client might
@@ -63,3 +69,55 @@ def normalize_work_modes(raw_values: list[str]) -> list[str]:
     """Normalizes a list of work mode values, in order. Raises
     InvalidWorkModeError on the first unrecognized value."""
     return [normalize_work_mode(v) for v in raw_values]
+
+
+# Same rationale as _DISPLAY_LABEL_ALIASES above, for
+# CareerEmploymentPreferences.employment_types (src/models/career_profile.py),
+# which is a genuinely free-text input on the Career Profile page (a
+# comma-separated field, not a fixed dropdown) -- "Full Time" is the
+# natural thing a real user types, but the stored model expects the
+# canonical EmploymentType enum value ("FULL_TIME"). Without this
+# normalization, that mismatch previously raised an *uncaught*
+# pydantic.ValidationError deep inside the route handler, which produced
+# a raw 500 response with no CORS headers at all (since the exception
+# propagated past CORSMiddleware before Starlette's ServerErrorMiddleware
+# caught it) -- in a browser this was indistinguishable from a CORS
+# failure. See api/main.py's pydantic ValidationError handler for the
+# general safety net, and this function for the specific fix.
+_EMPLOYMENT_TYPE_ALIASES: dict[str, EmploymentType] = {
+    "full time": EmploymentType.FULL_TIME,
+    "full-time": EmploymentType.FULL_TIME,
+    "part time": EmploymentType.PART_TIME,
+    "part-time": EmploymentType.PART_TIME,
+    "contract": EmploymentType.CONTRACT,
+    "contractor": EmploymentType.CONTRACT,
+    "internship": EmploymentType.INTERNSHIP,
+    "intern": EmploymentType.INTERNSHIP,
+    "temporary": EmploymentType.TEMPORARY,
+    "temp": EmploymentType.TEMPORARY,
+}
+
+
+def normalize_employment_type(raw: str) -> str:
+    """Accepts a display label ("Full Time"), a canonical value in any
+    case ("FULL_TIME", "full_time"), or a known alias, and returns the
+    canonical EmploymentType.value. Raises InvalidEmploymentTypeError for
+    anything else."""
+    if not isinstance(raw, str) or not raw.strip():
+        raise InvalidEmploymentTypeError(raw)
+
+    key = raw.strip().lower()
+    alias = _EMPLOYMENT_TYPE_ALIASES.get(key)
+    if alias is not None:
+        return alias.value
+
+    try:
+        return EmploymentType(raw.strip().upper().replace(" ", "_").replace("-", "_")).value
+    except ValueError:
+        raise InvalidEmploymentTypeError(raw) from None
+
+
+def normalize_employment_types(raw_values: list[str]) -> list[str]:
+    """Normalizes a list of employment type values, in order. Raises
+    InvalidEmploymentTypeError on the first unrecognized value."""
+    return [normalize_employment_type(v) for v in raw_values]

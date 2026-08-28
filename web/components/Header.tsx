@@ -4,8 +4,8 @@ import Logo from "./Logo";
 import { useSession } from "@/lib/session-context";
 
 export default function Header() {
-  const { mc } = useSession();
-  const demoMode = mc?.demo_mode ?? true;
+  const { mode } = useSession();
+  const isDemo = mode === "CERTIFICATION_DEMO";
 
   return (
     <header className="h-[70px] shrink-0 flex items-center gap-3 px-6 border-b border-border bg-body/80 backdrop-blur sticky top-0 z-10">
@@ -17,8 +17,12 @@ export default function Header() {
         </div>
       </div>
       <div className="flex-1" />
-      <span className={`hl-badge ${demoMode ? "hl-badge-violet" : "hl-badge-info"}`}>
-        {demoMode ? "DEMO MODE — SYNTHETIC DATA" : "LIVE MODE"}
+      {/* Session mode badge: PERSONAL vs CERTIFICATION_DEMO. Driven by
+          api/engine.py's Session.mode, never fabricated client-side.
+          Switching between modes never merges data -- see
+          tests/test_career_profile_isolation.py. */}
+      <span className={`hl-badge ${isDemo ? "hl-badge-violet" : "hl-badge-success"}`}>
+        {isDemo ? "CERTIFICATION DEMO — SYNTHETIC DATA" : "PERSONAL MODE"}
       </span>
       <div className="flex items-center gap-2 text-[12px] text-muted">
         <span className="relative flex h-2 w-2">

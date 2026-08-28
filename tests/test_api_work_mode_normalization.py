@@ -17,9 +17,19 @@ from __future__ import annotations
 import pytest
 from fastapi.testclient import TestClient
 
+from api import engine
 from api.main import app
 from api.validation import InvalidWorkModeError, normalize_work_mode, normalize_work_modes
 from src.models.enums import WorkMode
+
+# api/main.py's start_run() no longer silently falls back to
+# engine.DEMO_RESUME_PATH when the caller omits resume_path (see the fix
+# in api/main.py's docstring on start_run) -- a direct /run call with no
+# resume now returns a controlled 422 instead. These normalization tests
+# are about work-mode label handling, not about the resume-path
+# requirement, so they pass DEMO_RESUME_PATH explicitly (exactly what
+# engine.load_certification_demo() itself passes) to stay focused on what
+# they're actually testing.
 
 # ---------------------------------------------------------------------------
 # Unit tests: normalize_work_mode / normalize_work_modes
@@ -89,7 +99,7 @@ def test_run_with_display_label_remote_reaches_next_node_not_valueerror(client, 
     build_candidate_profile to the next real node/interrupt."""
     response = client.post(
         f"/api/session/{session_id}/run",
-        json={"target_roles": ["AI Engineer"], "work_modes": ["Remote"]},
+        json={"resume_path": engine.DEMO_RESUME_PATH, "target_roles": ["AI Engineer"], "work_modes": ["Remote"]},
     )
     assert response.status_code == 200
     body = response.json()
@@ -103,7 +113,11 @@ def test_run_with_display_label_remote_reaches_next_node_not_valueerror(client, 
 def test_run_with_mixed_case_work_modes_succeeds(client, session_id):
     response = client.post(
         f"/api/session/{session_id}/run",
-        json={"target_roles": ["AI Engineer"], "work_modes": ["remote", "HYBRID", "On-site"]},
+        json={
+            "resume_path": engine.DEMO_RESUME_PATH,
+            "target_roles": ["AI Engineer"],
+            "work_modes": ["remote", "HYBRID", "On-site"],
+        },
     )
     assert response.status_code == 200
     assert response.json().get("workflow_status") != "FAILED"
@@ -124,10 +138,9 @@ def test_candidate_preferences_survive_into_candidate_profile(client, session_id
     didn't crash."""
     response = client.post(
         f"/api/session/{session_id}/run",
-        json={"target_roles": ["AI Engineer"], "work_modes": ["Remote"]},
+        json={"resume_path": engine.DEMO_RESUME_PATH, "target_roles": ["AI Engineer"], "work_modes": ["Remote"]},
     )
     assert response.status_code == 200
-    from api import engine
 
     sess = engine.get_session(session_id)
     profile = sess.state.get("candidate_profile")
