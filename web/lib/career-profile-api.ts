@@ -8,6 +8,7 @@ import type {
   SessionMode,
 } from "./career-profile-types";
 import { apiRequest } from "./api-config";
+import { sessionReq } from "./api";
 
 const OWNER_ID_KEY = "hireloop_owner_id";
 
@@ -114,7 +115,16 @@ export const careerProfileApi = {
     req<CareerProfile>(`/api/career-profile/${ownerId}/confirm`, { method: "POST" }),
 };
 
+// /api/session/{sid}/mode is a workflow-session-scoped route (like
+// mission-control, opportunities, etc. in lib/api.ts), NOT an
+// owner_id-scoped Career Profile route -- it must go through the exact
+// same stale-session recovery as every other session-scoped call
+// (lib/api.ts's sessionReq), never a bare apiRequest. Previously this
+// used the unwrapped `req()` above, so a session_id that went stale
+// between SessionProvider's initial read and this specific call (e.g.
+// after a backend restart) produced an uncaught 404 here even when
+// every other Mission Control call had already recovered successfully.
 export async function fetchSessionMode(sessionId: string): Promise<SessionMode> {
-  const res = await req<{ mode: SessionMode }>(`/api/session/${sessionId}/mode`);
+  const res = await sessionReq<{ mode: SessionMode }>((sid) => `/api/session/${sid}/mode`, sessionId);
   return res.mode;
 }

@@ -93,7 +93,15 @@ export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T
   if (!res.ok) {
     const text = await res.text().catch(() => "");
     const kind = kindForStatus(res.status);
-    console.error(`[HireLoop API] ${path} failed: ${res.status} ${text}`);
+    // A 404 "Unknown session_id" is a KNOWN, expected, self-healing
+    // condition -- lib/api.ts's sessionReq() catches exactly this and
+    // transparently recovers with a fresh session_id + a single retry
+    // (see its docblock). It is not a genuine unhandled failure, so it's
+    // logged as a warning (still visible for debugging) rather than an
+    // error -- avoids a false "unexpected console error" during normal,
+    // by-design stale-session recovery (e.g. after a backend restart).
+    const isExpectedStaleSession = res.status === 404 && /unknown session_id/i.test(text);
+    (isExpectedStaleSession ? console.warn : console.error)(`[HireLoop API] ${path} failed: ${res.status} ${text}`);
     throw new ApiError(kind, res.status, text, userMessageFor(kind, res.status, text));
   }
 

@@ -62,6 +62,46 @@ def test_two_owners_are_fully_independent():
     assert b.professional_summary == ""
 
 
+def test_concurrent_access_from_multiple_threads_does_not_raise_interface_error():
+    """Regression test for a real production bug: api/career_profile_routes.py
+    shares ONE CareerProfileStore (and its one sqlite3.Connection) across
+    every FastAPI request via Depends(). FastAPI runs sync `def` route
+    handlers in a worker thread pool, so concurrent requests genuinely
+    execute .execute()/.commit() on the same connection from different OS
+    threads at once. Before CareerProfileStore.__init__ added a
+    threading.Lock() around every method touching self._conn, this
+    produced `sqlite3.InterfaceError: bad parameter or other API misuse`
+    under real concurrent load. check_same_thread=False alone (already
+    set in get_connection) only disables sqlite3's same-thread assertion
+    -- it does not make concurrent access from multiple threads safe."""
+    import threading
+
+    store = _store()
+    errors: list[BaseException] = []
+
+    def worker(i: int) -> None:
+        try:
+            for _ in range(20):
+                profile = store.get_or_create(f"concurrent-owner-{i}")
+                profile.professional_summary = f"summary {i}"
+                store.save(profile)
+                store.get_by_owner(f"concurrent-owner-{i}")
+        except BaseException as exc:  # noqa: BLE001 - we want to catch and report every error type
+            errors.append(exc)
+
+    threads = [threading.Thread(target=worker, args=(i,)) for i in range(12)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+
+    assert errors == [], f"concurrent access raised: {errors}"
+    for i in range(12):
+        profile = store.get_by_owner(f"concurrent-owner-{i}")
+        assert profile is not None
+        assert profile.professional_summary == f"summary {i}"
+
+
 def test_pending_upload_staging_lifecycle():
     store = _store()
     store.save_pending_upload("user-4", "upload-1", "resume.pdf", {"foo": "bar"})

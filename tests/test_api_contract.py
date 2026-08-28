@@ -140,8 +140,17 @@ def test_career_profile_client_never_builds_a_session_scoped_url():
     # fetchSessionMode is the one intentional exception -- confirm it is
     # declared outside the careerProfileApi object and still targets the
     # session-mode endpoint (not silently repurposed for owner_id calls).
-    assert "export async function fetchSessionMode" in src[obj_end:]
-    assert '`/api/session/${sessionId}/mode`' in src[obj_end:]
+    # It now goes through lib/api.ts's shared sessionReq() (the same
+    # stale-session recovery every other workflow-session-scoped call
+    # uses) rather than a bare apiRequest -- see its own regression test,
+    # test_fetch_session_mode_goes_through_shared_session_recovery below.
+    # The exact callback parameter name (`sid` vs `sessionId`) is an
+    # implementation detail, not part of the contract -- assert on the
+    # route pattern instead of one brittle literal.
+    tail = src[obj_end:]
+    assert "export async function fetchSessionMode" in tail
+    assert "sessionReq" in tail, "fetchSessionMode must use the shared sessionReq recovery wrapper, not a bare request"
+    assert "/api/session/" in tail and "/mode" in tail
 
 
 def test_workflow_client_never_builds_an_owner_scoped_url():
@@ -167,3 +176,37 @@ def test_owner_id_and_session_id_storage_keys_are_distinct():
     owner_key = re.search(r'OWNER_ID_KEY\s*=\s*"([^"]+)"', owner_src)
     assert session_key and owner_key, "expected both SESSION_KEY and OWNER_ID_KEY constants to exist"
     assert session_key.group(1) != owner_key.group(1)
+
+
+def test_session_req_is_exported_from_api_ts():
+    """lib/api.ts's sessionReq (the single stale-session recovery
+    implementation) must be exported, so career-profile-api.ts's
+    fetchSessionMode can reuse it instead of maintaining a second,
+    divergent recovery implementation (or, as was the real bug, no
+    recovery at all)."""
+    src = _read("api.ts")
+    assert re.search(r"export\s+async\s+function\s+sessionReq", src), (
+        "sessionReq must be exported from api.ts so other session-scoped clients can reuse it"
+    )
+
+
+def test_fetch_session_mode_goes_through_shared_session_recovery():
+    """Regression test for the exact reported bug: after SessionProvider's
+    stale-session recovery rotates session_id (e.g. A -> B following a
+    backend restart), EVERY subsequent session-scoped call -- including
+    GET /api/session/{sid}/mode -- must use the new id, and must itself
+    be able to recover if it independently hits a stale id. Before this
+    fix, fetchSessionMode called a bare, unwrapped request with no
+    recovery of its own, so it could 404 on a stale id even after
+    api.missionControl() had already recovered successfully."""
+    src = _read("career-profile-api.ts")
+    assert "import { sessionReq } from \"./api\";" in src or "import { sessionReq } from './api';" in src, (
+        "fetchSessionMode must import and use the shared sessionReq recovery wrapper from api.ts"
+    )
+    fn_start = src.index("export async function fetchSessionMode")
+    fn_body = src[fn_start : fn_start + 400]
+    # sessionReq may be called with a generic type argument (sessionReq<T>(...)),
+    # so match the call itself rather than one exact literal.
+    assert re.search(r"await\s+sessionReq\s*(<[^(]*>)?\s*\(", fn_body), (
+        "fetchSessionMode must call sessionReq(), not a bare apiRequest/req()"
+    )

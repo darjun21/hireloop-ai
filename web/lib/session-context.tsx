@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { api, ensureSession, onSessionRecovered, resetSession, SessionRecoveryFailedError } from "./api";
+import { api, ensureSession, getStoredSessionId, onSessionRecovered, resetSession, SessionRecoveryFailedError } from "./api";
 import { fetchSessionMode } from "./career-profile-api";
 import type { SessionMode } from "./career-profile-types";
 import type { MissionControlView } from "./types";
@@ -75,7 +75,19 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     }
     // Mode is fetched separately -- it never blocks/errors the main
     // mission-control view if unreachable, since it's purely a UI badge.
-    fetchSessionMode(sid)
+    //
+    // Re-read the CURRENT session_id from localStorage rather than
+    // reusing the `sid` closure variable captured above: api.missionControl
+    // may have silently recovered a stale `sid` to a fresh one internally
+    // (lib/api.ts's sessionReq), synchronously persisting it to
+    // localStorage before returning -- `sid` itself is never updated to
+    // match. Using the stale value here would still self-heal (
+    // fetchSessionMode now goes through the same sessionReq recovery),
+    // but would waste a request on every single recovery. localStorage
+    // (via getStoredSessionId) is the single authoritative record of
+    // "the current session_id" that every recovery path already writes
+    // to, so reading it here avoids introducing a second, parallel cache.
+    fetchSessionMode(getStoredSessionId() ?? sid)
       .then(setMode)
       .catch(() => {});
   }, []);

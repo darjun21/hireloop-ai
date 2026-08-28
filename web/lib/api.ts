@@ -113,8 +113,13 @@ async function recoverSession(): Promise<string> {
 
 /** Every session-scoped request goes through here instead of calling
  * apiRequest directly, so stale-session recovery is centralized in one
- * place rather than copy-pasted per page/call site. */
-async function sessionReq<T>(buildPath: (sid: string) => string, sid: string, init?: RequestInit): Promise<T> {
+ * place rather than copy-pasted per page/call site. Exported so OTHER
+ * session-scoped clients outside this module (e.g.
+ * career-profile-api.ts's fetchSessionMode, which hits
+ * /api/session/{sid}/mode -- a workflow-session-scoped route, not an
+ * owner_id-scoped Career Profile route) get the exact same recovery
+ * behavior instead of a second, divergent implementation. */
+export async function sessionReq<T>(buildPath: (sid: string) => string, sid: string, init?: RequestInit): Promise<T> {
   try {
     return await apiRequest<T>(buildPath(sid), init);
   } catch (e) {

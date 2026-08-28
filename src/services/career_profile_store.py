@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
+import threading
 from pathlib import Path
 from typing import Any
 
@@ -87,15 +88,35 @@ def init_schema(conn: sqlite3.Connection) -> None:
 
 
 class CareerProfileStore:
-    """The only intended caller of the raw SQL in this module."""
+    """The only intended caller of the raw SQL in this module.
+
+    A single instance (and single sqlite3.Connection) is shared across
+    every FastAPI request via a module-level singleton + Depends() in
+    api/career_profile_routes.py. `check_same_thread=False` on the
+    connection only disables sqlite3's same-thread assertion -- it does
+    NOT make concurrent execute() calls from multiple OS threads on the
+    SAME connection object safe. FastAPI runs synchronous `def` route
+    handlers in a worker thread pool by default, so two Career Profile
+    requests arriving close together (the frontend routinely fires
+    several profile-related fetches in parallel on page load) can
+    genuinely execute .execute()/.commit() on this connection
+    concurrently from different threads -- corrupting the underlying
+    SQLite statement handle and surfacing as
+    `sqlite3.InterfaceError: bad parameter or other API misuse`, exactly
+    as observed. This lock serializes all access to `self._conn`, which
+    is the minimal correct fix for that failure mode (SQLite itself is
+    fast enough per-call that a single global lock here is not a real
+    throughput concern for this app's traffic)."""
 
     def __init__(self, conn: sqlite3.Connection) -> None:
         self._conn = conn
+        self._lock = threading.Lock()
 
     def get_by_owner(self, owner_id: str) -> CareerProfile | None:
-        row = self._conn.execute(
-            "SELECT data FROM career_profiles WHERE owner_id = ?", (owner_id,)
-        ).fetchone()
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT data FROM career_profiles WHERE owner_id = ?", (owner_id,)
+            ).fetchone()
         if row is None:
             return None
         return CareerProfile.model_validate(json.loads(row["data"]))
@@ -113,49 +134,53 @@ class CareerProfileStore:
 
         profile.updated_at = datetime.now(timezone.utc)
         payload = profile.model_dump(mode="json")
-        self._conn.execute(
-            """
-            INSERT INTO career_profiles (profile_id, owner_id, data, created_at, updated_at)
-            VALUES (?, ?, ?, ?, ?)
-            ON CONFLICT(owner_id) DO UPDATE SET
-                data = excluded.data,
-                updated_at = excluded.updated_at
-            """,
-            (
-                profile.profile_id,
-                profile.owner_id,
-                json.dumps(payload),
-                profile.created_at.isoformat(),
-                profile.updated_at.isoformat(),
-            ),
-        )
-        self._conn.commit()
+        with self._lock:
+            self._conn.execute(
+                """
+                INSERT INTO career_profiles (profile_id, owner_id, data, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(owner_id) DO UPDATE SET
+                    data = excluded.data,
+                    updated_at = excluded.updated_at
+                """,
+                (
+                    profile.profile_id,
+                    profile.owner_id,
+                    json.dumps(payload),
+                    profile.created_at.isoformat(),
+                    profile.updated_at.isoformat(),
+                ),
+            )
+            self._conn.commit()
         return profile
 
     def delete(self, owner_id: str) -> None:
-        self._conn.execute("DELETE FROM career_profiles WHERE owner_id = ?", (owner_id,))
-        self._conn.commit()
+        with self._lock:
+            self._conn.execute("DELETE FROM career_profiles WHERE owner_id = ?", (owner_id,))
+            self._conn.commit()
 
     # -- pending resume uploads (merge-preview staging area) ---------------
 
     def save_pending_upload(self, owner_id: str, upload_id: str, original_filename: str | None, data: dict[str, Any]) -> None:
         from datetime import datetime, timezone
 
-        self._conn.execute(
-            """
-            INSERT INTO career_profile_resume_uploads
-                (upload_id, owner_id, original_filename, uploaded_at, applied, data)
-            VALUES (?, ?, ?, ?, 0, ?)
-            """,
-            (upload_id, owner_id, original_filename, datetime.now(timezone.utc).isoformat(), json.dumps(data)),
-        )
-        self._conn.commit()
+        with self._lock:
+            self._conn.execute(
+                """
+                INSERT INTO career_profile_resume_uploads
+                    (upload_id, owner_id, original_filename, uploaded_at, applied, data)
+                VALUES (?, ?, ?, ?, 0, ?)
+                """,
+                (upload_id, owner_id, original_filename, datetime.now(timezone.utc).isoformat(), json.dumps(data)),
+            )
+            self._conn.commit()
 
     def get_pending_upload(self, upload_id: str) -> dict[str, Any] | None:
-        row = self._conn.execute(
-            "SELECT * FROM career_profile_resume_uploads WHERE upload_id = ? AND applied = 0",
-            (upload_id,),
-        ).fetchone()
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT * FROM career_profile_resume_uploads WHERE upload_id = ? AND applied = 0",
+                (upload_id,),
+            ).fetchone()
         if row is None:
             return None
         result = json.loads(row["data"])
@@ -163,8 +188,9 @@ class CareerProfileStore:
         return result
 
     def mark_upload_applied(self, upload_id: str) -> None:
-        self._conn.execute(
-            "UPDATE career_profile_resume_uploads SET applied = 1 WHERE upload_id = ?",
-            (upload_id,),
-        )
-        self._conn.commit()
+        with self._lock:
+            self._conn.execute(
+                "UPDATE career_profile_resume_uploads SET applied = 1 WHERE upload_id = ?",
+                (upload_id,),
+            )
+            self._conn.commit()
